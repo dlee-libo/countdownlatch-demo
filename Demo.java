@@ -1,9 +1,7 @@
-import java.util.concurrent.CountDownLatch;
-
 public class Demo {
 
     public static void main(String argv[]) {
-        CountDownLatch doneSignal = new CountDownLatch(3);
+        ICDL doneSignal = new ICDL(3);
         for (int i = 0; i < 3; i++) {
             Worker x = new Worker(i+1, doneSignal);
             x.start();
@@ -18,9 +16,9 @@ public class Demo {
 
     private static class Worker extends Thread {
         private int n;
-        private CountDownLatch doneSignal;
+        private ICDL doneSignal;
 
-        public Worker(int n, CountDownLatch doneSignal) {
+        public Worker(int n, ICDL doneSignal) {
             this.n = n;
             this.doneSignal = doneSignal;
         }
